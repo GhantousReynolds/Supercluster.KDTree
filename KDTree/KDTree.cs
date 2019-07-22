@@ -54,6 +54,16 @@ namespace Supercluster.KDTree
         public TNode[] InternalNodeArray { get; }
 
         /// <summary>
+        /// A stored dictionary of binId to tree depth for visualizations.
+        /// </summary>
+        public Dictionary<int, int> BinLevelMap { get; }
+
+        /// <summary>
+        /// A stored dictionary of binId to tree depth for visualizations.
+        /// </summary>
+        public Dictionary<int, bool> BinLeafMap { get; }
+
+        /// <summary>
         /// The metric function used to calculate distance between points.
         /// </summary>
         public Func<TDimension[], TDimension[], double> Metric { get; set; }
@@ -120,6 +130,8 @@ namespace Supercluster.KDTree
             this.InternalNodeArray = Enumerable.Repeat(default(TNode), elementCount).ToArray();
             this.Metric = metric;
             this.Count = points.Length;
+            this.BinLevelMap = new Dictionary<int, int>();
+            this.BinLeafMap = new Dictionary<int, bool>();
             this.GenerateTree(0, 0, points, nodes);
         }
 
@@ -198,6 +210,11 @@ namespace Supercluster.KDTree
             var medianPoint = sortedPoints[points.Count / 2];
             var medianPointIdx = sortedPoints.Length / 2;
 
+            if (index == 0)
+            {
+                this.BinLevelMap.Add(0, 0);
+            }
+
             // The point with the median value all the current dimension now becomes the value of the current tree node
             // The previous node becomes the parents of the current node.
             this.InternalPointArray[index] = medianPoint.Point;
@@ -230,6 +247,7 @@ namespace Supercluster.KDTree
             // If the array has no points then the node stay a null value
             if (leftPoints.Length <= 1)
             {
+                this.BinLeafMap.Add(index, true);
                 if (leftPoints.Length == 1)
                 {
                     this.InternalPointArray[LeftChildIndex(index)] = leftPoints[0];
@@ -238,12 +256,15 @@ namespace Supercluster.KDTree
             }
             else
             {
+                this.BinLeafMap.Add(index, false);
+                this.BinLevelMap.Add(LeftChildIndex(index), this.BinLevelMap[index] + 1);
                 this.GenerateTree(LeftChildIndex(index), nextDim, leftPoints, leftNodes);
             }
 
             // Do the same for the right points
             if (rightPoints.Length <= 1)
             {
+                this.BinLeafMap[index] = true;
                 if (rightPoints.Length == 1)
                 {
                     this.InternalPointArray[RightChildIndex(index)] = rightPoints[0];
@@ -252,6 +273,8 @@ namespace Supercluster.KDTree
             }
             else
             {
+                this.BinLeafMap[index] = false;
+                this.BinLevelMap.Add(RightChildIndex(index), this.BinLevelMap[index] + 1);
                 this.GenerateTree(RightChildIndex(index), nextDim, rightPoints, rightNodes);
             }
         }
@@ -348,6 +371,7 @@ namespace Supercluster.KDTree
                 nearestNeighbors.Add(nodeIndex, distanceSquaredToTarget);
             }
         }
+
     }
 
 }
