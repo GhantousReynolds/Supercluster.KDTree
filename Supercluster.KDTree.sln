@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supercluster.KDTree", "KDTree\Supercluster.KDTree.csproj", "{D35C4E61-DC99-4AD1-9A36-2F1E723F32C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDTreeTests", "KDTreeTests\KDTreeTests.csproj", "{ECE0D8B6-16B0-4C0D-AF1F-EE0C819EC9C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supercluster.KDTree.Standard", "Supercluster.KDTree.Standard\Supercluster.KDTree.Standard.csproj", "{D8A3416D-681E-4FF2-8D59-56A1C7BAE7FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{ECE0D8B6-16B0-4C0D-AF1F-EE0C819EC9C1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ECE0D8B6-16B0-4C0D-AF1F-EE0C819EC9C1}.Release|x64.ActiveCfg = Release|x64
 		{ECE0D8B6-16B0-4C0D-AF1F-EE0C819EC9C1}.Release|x64.Build.0 = Release|x64
+		{D8A3416D-681E-4FF2-8D59-56A1C7BAE7FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8A3416D-681E-4FF2-8D59-56A1C7BAE7FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8A3416D-681E-4FF2-8D59-56A1C7BAE7FC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D8A3416D-681E-4FF2-8D59-56A1C7BAE7FC}.Debug|x64.Build.0 = Debug|Any CPU
+		{D8A3416D-681E-4FF2-8D59-56A1C7BAE7FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8A3416D-681E-4FF2-8D59-56A1C7BAE7FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8A3416D-681E-4FF2-8D59-56A1C7BAE7FC}.Release|x64.ActiveCfg = Release|Any CPU
+		{D8A3416D-681E-4FF2-8D59-56A1C7BAE7FC}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
